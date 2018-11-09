@@ -3,6 +3,10 @@
 
 ## CKEditor 4.13
 
+Fixed Issues:
+
+* [#2395](https://github.com/ckeditor/ckeditor-dev/issues/2395): Fixed: focused input in [dialog](https://ckeditor.com/cke4/addon/dialog) is scrolled out of viewport when soft keyboard appears.
+
 ## CKEditor 4.12.1
 
 Fixed Issues:
