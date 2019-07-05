@@ -89,11 +89,7 @@ function drop( editor, evt, config, onDrop, onFinish ) {
 				if ( config.expectedText && isCustomDataTypesSupported ) {
 					assert.areSame( config.expectedText, values.dropDataText, 'On drop: text data should match.' );
 				}
-				// if ( config.expectedHtml ) {
-				// 	// isInnerHtmlMatching remove space from the end of strings we compare, adding 'x' fix this problem.
-				// 	console.log( config.expectedHtml );
-				// 	assert.isInnerHtmlMatching( 'x' + config.expectedHtml + 'x', 'x' + values.dropDataHtml + 'x', 'On drop: HTML data should match.' );
-				// }
+
 				assert.isTrue( values.dropRangeStartContainerMatch, 'On drop: drop range start container should match.' );
 				assert.isTrue( values.dropRangeStartContainerMatch, 'On drop: drop range start offset should match.' );
 
@@ -109,11 +105,6 @@ function drop( editor, evt, config, onDrop, onFinish ) {
 
 			if ( expectedPasteEventCount > 0 ) {
 				assert.areSame( config.expectedTransferType, values.pasteTransferType, 'On paste: transferType should match.' );
-				// isInnerHtmlMatching remove space from the end of strings we compare, adding 'x' fix this problem.
-				// assert.isInnerHtmlMatching( 'x' + config.expectedHtml + 'x', 'x' + values.pasteDataHtml + 'x', 'On paste: HTML data should match.' );
-				// assert.areSame( 'drop', values.pasteMethod, 'On paste: method should be drop.' );
-				// config.expectedDataType && assert.areSame( config.expectedDataType, values.pasteDataType, 'On paste: data type should match.' );
-				// assert.isInnerHtmlMatching( 'x' + config.expectedDataValue + 'x', 'x' + values.pasteDataValue + 'x', 'On paste: data value should match.' );
 			}
 
 			if ( onFinish )
@@ -142,7 +133,7 @@ function drop( editor, evt, config, onDrop, onFinish ) {
 		classic: {}
 	};
 	var tests = {
-		'test drop to header3': function( editor ) {
+		'test drop with tableselection': function( editor ) {
 			var bot = bender.editorBots[ editor.name ],
 				evt = bender.tools.mockDropEvent();
 
@@ -166,59 +157,6 @@ function drop( editor, evt, config, onDrop, onFinish ) {
 
 		}
 
-		/*
-
-		'test drop to header2': function( editor ) {
-			var bot = bender.editorBots[ editor.name ],
-				evt = bender.tools.mockDropEvent();
-
-			bot.setHtmlWithSelection( CKEDITOR.document.getById( 'editor' ).getValue() );
-			editor.resetUndo();
-
-			drag( editor, evt );
-
-			drop( editor, evt, {
-				dropContainer: editor.editable().findOne( '.h1' ).getChild( 0 ),
-				dropOffset: 7,
-				expectedTransferType: CKEDITOR.DATA_TRANSFER_INTERNAL,
-				expectedText: 'dolor',
-				expectedHtml: 'dolor',
-				expectedDataType: 'html',
-				expectedDataValue: 'dolor'
-			}, null, function() {
-				assert.areSame( '<h1 class="h1">Header1dolor^</h1><p>Lorem ipsum sit amet.</p>', bender.tools.getHtmlWithSelection( editor ), 'after drop' );
-
-				editor.execCommand( 'undo' );
-
-				assert.areSame( '<h1 class="h1">Header1</h1><p>Lorem ipsum dolor sit amet.</p>', editor.getData(), 'after undo' );
-			} );
-		},
-
-		'test drop to header': function( editor ) {
-			var bot = bender.editorBots[ editor.name ],
-				evt = bender.tools.mockDropEvent();
-
-			bot.setHtmlWithSelection( CKEDITOR.document.getById( 'editor' ).getValue() );
-			editor.resetUndo();
-
-			drag( editor, evt );
-
-			drop( editor, evt, {
-				dropContainer: editor.editable().findOne( '.drop-target' ).getChild( 0 ),
-				dropOffset: 0,
-				expectedTransferType: CKEDITOR.DATA_TRANSFER_INTERNAL,
-				expectedText: 'dolor',
-				expectedHtml: 'dolor',
-				expectedDataType: 'html',
-				expectedDataValue: 'dolor'
-			}, null, function() {
-				assert.areSame( '<h1 class="h1">Header1dolor^</h1><p>Lorem ipsum sit amet.</p>', bender.tools.getHtmlWithSelection( editor ), 'after drop' );
-
-				// editor.execCommand( 'undo' );
-
-				// assert.areSame( '<h1 class="h1">Header1</h1><p>Lorem ipsum dolor sit amet.</p>', editor.getData(), 'after undo' );
-			} );
-		} */
 	};
 
 	tests = bender.tools.createTestsForEditors( CKEDITOR.tools.objectKeys( bender.editors ), tests );
