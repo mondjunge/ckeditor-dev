@@ -3,6 +3,14 @@
 
 ## CKEditor 4.13
 
+Fixed Issues:
+
+* [#3115](https://github.com/ckeditor/ckeditor-dev/issues/3115): Fixed: Destroying editor during initialization throws an error.
+
+API Changes:
+
+* [#3124](https://github.com/ckeditor/ckeditor-dev/issues/3124): Added the [`CKEDITOR.dom.element`](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_dom_element.html#method-isDetached) method.
+
 ## CKEditor 4.12.1
 
 Fixed Issues:
