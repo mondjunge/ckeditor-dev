@@ -1171,6 +1171,20 @@ bender.test( appendDomObjectTests(
 			elem.setSize( 'width', 200, true );
 
 			assert.areSame( expectedWidth, round( parseFloat( elem.$.style.width ) ), 'Computed width' );
+		},
+
+		'test getClientSize': function() {
+			var element = new CKEDITOR.dom.element( 'div' );
+
+			element.$ = {
+				clientWidth: 100,
+				clientHeight: 100
+			};
+
+			var size = element.getClientSize();
+
+			assert.areSame( 100, size.width );
+			assert.areSame( 100, size.height );
 		}
 	}
 ) );
